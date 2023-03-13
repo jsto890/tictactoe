@@ -147,7 +147,7 @@ def check_draw(board):
         print('\nGAME OVER\n')
         # If count reaches 8 then game has tied
         print('PLAYERS HAVE TIED')
-        exit()
+        return True
     else:
         return False
 
@@ -180,11 +180,11 @@ def check_win(board):
         i += 1
     if countX > countO:
         # Compares them and if more X plays then it is player O's turn
-        player = 'Player X'
+        player = 'X'
 
     else:
         # Other option
-        player = 'Player O'
+        player = 'O'
 
     while count >= 5:
         if board[0] == board[1] == board[2] != '.':
@@ -259,12 +259,14 @@ def play_game():
         """
     board = initialise_board()
     for i in range(10):
+        if i == 9:
+            exit()
         display_board(board)
         count = get_current_turn_number(board)
         player = get_current_player(board)
-        print(player + " it's your turn, what row do you want to pick?")
+        print("Player " + player + " it's your turn, what row do you want to pick?")
         a = input()
-        print(player + " it's your turn, what column do you want to pick?")
+        print("Player " + player + " it's your turn, what column do you want to pick?")
         b = input()
         play_turn(board, int(a), int(b))
         check_draw(board)
